@@ -25,4 +25,10 @@ class BaseAction:
         feature = By.XPATH, "//*[contains(@text,'" + key_word + "')]"
         return self.find_element(feature, timeout=5, poll=0.1).text
 
+    def is_toast_exits(self, key_word):
+        try:
+            self.find_toast(key_word)
+            return True
+        except Exception:
+            return False
 
