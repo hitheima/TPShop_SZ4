@@ -10,5 +10,7 @@ def init_driver():
     # app信息
     desired_caps['appPackage'] = 'com.tpshop.malls'
     desired_caps['appActivity'] = '.SPMainActivity'
+    # toast
+    desired_caps['automationName'] = 'Uiautomator2'
 
     return webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
