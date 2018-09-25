@@ -1,8 +1,25 @@
+import random
+
 from base.base_driver import init_driver
 from page.page import Page
 from base.base_analyze import analyze_with_file_name
 
 import pytest
+
+
+def random_password():
+    password = ""
+    for i in range(8):
+        password += str(random.randint(0, 9))
+    return password
+
+
+def password_list():
+    passwords = list()
+    for i in range(2):
+        passwords.append(random_password())
+    return passwords
+
 
 class TestLogin:
 
@@ -34,45 +51,56 @@ class TestLogin:
     #
     #     assert self.page.sign_up_and_login.is_toast_exits(expect)
 
-    @pytest.mark.parametrize("args", analyze_with_file_name("login", "test_login_miss_part"))
-    def test_login_miss_part(self, args):
-        """
-        只输入用户名或脚本
-        :return:
-        """
-        phone = args["phone"]
-        password = args["password"]
+    # @pytest.mark.parametrize("args", analyze_with_file_name("login", "test_login_miss_part"))
+    # def test_login_miss_part(self, args):
+    #     """
+    #     只输入用户名或脚本
+    #     :return:
+    #     """
+    #     phone = args["phone"]
+    #     password = args["password"]
+    #
+    #     self.page.home.click_mine()
+    #     self.page.mine.click_sign_up_and_login()
+    #
+    #     self.page.sign_up_and_login.input_phone(phone)
+    #     self.page.sign_up_and_login.input_password(password)
+    #
+    #     assert not self.page.sign_up_and_login.is_login_button_enabled()
+    #
+    #     # # 判断登录按钮的状态
+    #     # if self.page.sign_up_and_login.is_login_button_enabled() == False:
+    #     #     assert True
+    #     # else:
+    #     #     assert False
+    #
+    #     # # 按钮状态如果为真
+    #     # if true == False:
+    #     #     assert True
+    #     # else:
+    #     #     assert False
+    #     #
+    #     # # 按钮状态如果为假
+    #     # if false == False:
+    #     #     assert True
+    #     # else:
+    #     #     assert False
+    #     #
+    #     #     按钮为 true 返回 为 false
+    #     #     按钮为 false 返回 为 True
 
+    @pytest.mark.parametrize("password", password_list())
+    def test_show_password(self, password):
         self.page.home.click_mine()
         self.page.mine.click_sign_up_and_login()
-
-        self.page.sign_up_and_login.input_phone(phone)
         self.page.sign_up_and_login.input_password(password)
 
-        assert not self.page.sign_up_and_login.is_login_button_enabled()
+        if self.page.sign_up_and_login.is_show_password_text_exist(password):
+            assert False
 
-        # # 判断登录按钮的状态
-        # if self.page.sign_up_and_login.is_login_button_enabled() == False:
-        #     assert True
-        # else:
-        #     assert False
-
-        # # 按钮状态如果为真
-        # if true == False:
-        #     assert True
-        # else:
-        #     assert False
-        #
-        # # 按钮状态如果为假
-        # if false == False:
-        #     assert True
-        # else:
-        #     assert False
-        #
-        #     按钮为 true 返回 为 false
-        #     按钮为 false 返回 为 True
-
-
+        self.page.sign_up_and_login.click_show_password()
+        # 如果找到输入的密码，那么断言为true
+        assert self.page.sign_up_and_login.is_show_password_text_exist(password)
 
 
 
