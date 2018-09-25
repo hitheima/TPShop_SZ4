@@ -55,3 +55,13 @@ class BaseAction:
             return True
         except Exception:
             return False
+
+    # -------- 以下仅仅是这个项目会用到
+
+    def is_login(self):
+        """
+        需要点击齿轮后进行验证
+        :return:
+        """
+        title_feature = By.ID, "com.tpshop.malls:id/titlebar_title_txtv"
+        return not self.find_element(title_feature).text == "登录"
