@@ -64,4 +64,14 @@ class BaseAction:
         :return:
         """
         title_feature = By.ID, "com.tpshop.malls:id/titlebar_title_txtv"
-        return not self.find_element(title_feature).text == "登录"
+
+        is_user_login = None
+
+        if self.find_element(title_feature).text == "登录":
+            is_user_login = False
+        else:
+            is_user_login = True
+
+        self.driver.press_keycode(4)
+
+        return is_user_login
