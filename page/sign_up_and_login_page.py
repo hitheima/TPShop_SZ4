@@ -26,3 +26,6 @@ class SignUpAndLoginPage(BaseAction):
     @allure.step(title="登录/注册-点击登录")
     def click_login(self):
         self.click(self.login_button)
+
+    def is_login_button_enabled(self):
+        return self.is_feature_enabled(self.login_button)
