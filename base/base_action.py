@@ -92,6 +92,23 @@ class BaseAction:
         else:
             raise Exception("您输入的参数有误，请检查，direction参数必须是up/down/left/right")
 
+    def is_feature_exist_scroll_page(self, feature):
+        """
+        根据特征，先找，如果没有找到，滑动，如果找到直接返回True，如果到底部还没有找到，则返回false
+        :param feature:
+        :return:
+        """
+        page_source = ""
+        while True:
+            if self.driver.page_source == page_source:
+                return False
+            try:
+                self.find_element(feature)
+                return True
+            except Exception:
+                page_source = self.driver.page_source
+                self.scroll_page_one_time()
+
 
     # -------- 以下仅仅是这个项目会用到
 
