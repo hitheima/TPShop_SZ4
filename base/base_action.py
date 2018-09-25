@@ -22,13 +22,21 @@ class BaseAction:
         self.find_element(feature).click()
 
     def find_toast(self, key_word):
-        feature = By.XPATH, "//*[contains(@text,'" + key_word + "')]"
-        return self.find_element(feature, timeout=5, poll=0.1).text
+        """
+        通过toast上的部分文字，获取全部的内容
+        :param key_word:
+        :return:
+        """
+        message = By.XPATH, "//*[contains(@text,'%s')]" % key_word
+        return self.find_element(message, timeout=5, poll=0.1).text
 
-    def is_toast_exits(self, key_word):
+    def is_toast_exist(self, key_word):
+        """
+        通过toast的部分文字，获取这个toast是否存在
+        :return:
+        """
         try:
             self.find_toast(key_word)
             return True
-        except Exception:
+        except:
             return False
-
