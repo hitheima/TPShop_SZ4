@@ -16,6 +16,12 @@ class AddressInfoPage(BaseAction):
     #具体地址
     address_edit_text = By.ID, "com.tpshop.malls:id/consignee_address_edtv"
 
+    # 所在地区
+    region_button = By.ID, "com.tpshop.malls:id/consignee_region_txtv"
+
+    # 保存收货地址
+    save_address_button = By.XPATH, "//*[@text='保存收货地址']"
+
     def input_name(self, text):
         self.input(self.name_edit_text, text)
 
@@ -24,3 +30,11 @@ class AddressInfoPage(BaseAction):
 
     def input_address(self, text):
         self.input(self.address_edit_text, text)
+
+    def click_region(self):
+        self.click(self.region_button)
+
+    def click_save_address(self):
+        self.click(self.save_address_button)
+
+

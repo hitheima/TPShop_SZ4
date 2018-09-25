@@ -32,6 +32,16 @@ class TestAddress:
         self.page.address_info.input_mobile("18503080303")
         # 输入详细地址
         self.page.address_info.input_address("三单元")
+        # 点击所在地区
+        self.page.address_info.click_region()
+        # 选择地区
+        self.page.region.click_city_titles()
+        # 点击确定
+        self.page.region.click_commit()
+        # 保存收货地址
+        self.page.address_info.click_save_address()
+        # 判断toast是不是"添加成功"
+        assert self.page.address_info.is_toast_exist("添加成功")
 
         # if self.page.mine.is_login():
         #
