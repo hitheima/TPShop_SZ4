@@ -56,6 +56,43 @@ class BaseAction:
         except Exception:
             return False
 
+    def scroll_page_one_time(self, direction="up"):
+        """
+
+        :param direction:
+            up：从下往上
+            down：从上往下
+            left：从右往左
+            right：从左往右
+        :return:
+        """
+        screen_width = self.driver.get_window_size()["width"]
+        screen_height = self.driver.get_window_size()["height"]
+
+        center_x = screen_width * 0.5
+        center_y = screen_height * 0.5
+
+        down_x = center_x
+        down_y = screen_height * 0.75
+        up_x = center_x
+        up_y = screen_height * 0.
+        left_x = screen_width * 0.25
+        left_y = center_y
+        right_x = screen_width * 0.75
+        right_y = center_y
+
+        if direction == "up":
+            self.driver.swipe(down_x, down_y, up_x, up_y, 3000)
+        elif direction == "down":
+            self.driver.swipe(up_x, up_y, down_x, down_y, 3000)
+        elif direction == "left":
+            self.driver.swipe(right_x, right_y, left_x, left_y, 3000)
+        elif direction == "right":
+            self.driver.swipe(left_x, left_y, right_x, right_y, 3000)
+        else:
+            raise Exception("您输入的参数有误，请检查，direction参数必须是up/down/left/right")
+
+
     # -------- 以下仅仅是这个项目会用到
 
     def is_login(self):
