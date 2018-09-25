@@ -22,10 +22,8 @@ class TestAddress:
             self.page.sign_up_and_login.input_password("123456")
             self.page.sign_up_and_login.click_login()
 
-
         # 填写收货地址
-        pass
-        print("点击收货")
+        self.page.mine.click_address()
 
 
         #
