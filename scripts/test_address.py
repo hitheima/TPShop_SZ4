@@ -24,9 +24,15 @@ class TestAddress:
 
         # 填写收货地址
         self.page.mine.click_address()
+        # 点击新建地址
+        self.page.address_list.click_new_address()
+        # 输入收货人
+        self.page.address_info.input_name("hello")
+        # 输入手机号
+        self.page.address_info.input_mobile("18503080303")
+        # 输入详细地址
+        self.page.address_info.input_address("三单元")
 
-
-        #
         # if self.page.mine.is_login():
         #
         #     # 点击收货地址

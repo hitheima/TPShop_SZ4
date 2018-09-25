@@ -1,3 +1,5 @@
+from page.address_info_page import AddressInfoPage
+from page.address_list_page import AddressListPage
 from page.home_page import HomePage
 from page.mine_page import MinePage
 from page.sign_up_and_login_page import SignUpAndLoginPage
@@ -19,3 +21,11 @@ class Page:
     @property
     def sign_up_and_login(self):
         return SignUpAndLoginPage(self.driver)
+
+    @property
+    def address_list(self):
+        return AddressListPage(self.driver)
+
+    @property
+    def address_info(self):
+        return AddressInfoPage(self.driver)
